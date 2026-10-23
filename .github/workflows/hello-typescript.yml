@@ -1,0 +1,20 @@
+name: Hello-world TypeScript CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes --package typescript@5.9.3 tsc typescript/hello.ts --noEmit --skipLibCheck --target ES2020
